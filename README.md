@@ -7,4 +7,9 @@ and test for primality using [libgmp](https://gmplib.org).
 - Windows file format (..0d0a), converted to Linux
 - cut to 1024 lines
 
+##### Comments about main.l
+- `infix` evaluation by [Shunting yard](https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
+- after evaluation testing number must be `odd`
+- `mpz_probab_prime_p()` must always return `>0`
+
 Have fun!
