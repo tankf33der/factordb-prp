@@ -3,5 +3,6 @@ and test for primality using [libgmp](https://gmplib.org).
 
 ##### Comments
 - prp.txt had have special unknown meaning symbols '# and 'I, deleted
+- prp.txt in Windows file format (..0d0a)
 
 Have fun!
