@@ -18,7 +18,7 @@
 (de consOp (Op)
    (case Op
       (("+" "-") (cons 1 Op))
-      (("*" "/") (cons 2 Op))
+      (("*" "/" "%") (cons 2 Op))
       (("\^" "!") (cons 3 Op)) ) )
 (de calc (Lst)
    (let (O NIL  V NIL)
