@@ -6,11 +6,11 @@
 # Modifies both V and O
 (de 1op ()
    (case (cdar O)
+      ("!"
+         (push 'V (factorial (++ V))) )
       ("\^"
          (let N (++ V)
             (push 'V (** (++ V) N)) ) )
-      ("!"
-         (push 'V (factorial (++ V))) )
       (T
          (let N (++ V)
             (push 'V ((intern @) (++ V) N)) ) ) )
@@ -20,7 +20,7 @@
       (("+" "-") (cons 1 Op))
       (("*" "/") (cons 2 Op))
       (("\^" "!") (cons 3 Op)) ) )
-(de calculate (Lst)
+(de calc (Lst)
    (let (O NIL  V NIL)
       (for I Lst
          (cond
