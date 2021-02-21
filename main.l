@@ -12,7 +12,8 @@
 (setq A (mpz_create))
 (mpz_init A)
 
-(prinl "Found probably_primes: ")
+(prin "Found NOT probably_primes: ")
+(setq Total 0  C 0)
 # in place
 (in "prp.txt"
    (until (eof)
@@ -28,8 +29,11 @@
             Odd? (bit? 1 N) )
          # All numbers evaluated must be odd, right?
          ~(assert (=1 Odd?))
-         (mpz_set_str A (format M))
-         (when (gt0 (mpz_probab_prime_p A 50))
-            (println '@ @ 'N N) ) ) ) )
+         (inc 'Total)
+         (mpz_set_str A (format N))
+         (when (> 1 (mpz_probab_prime_p A 1))
+            (inc 'C) ) ) ) )
+(prinl C " of total " Total)
+
 (msg 'ok)
 (bye)
