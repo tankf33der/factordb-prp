@@ -12,7 +12,7 @@
 (setq A (mpz_create))
 (mpz_init A)
 
-(prin "A minute run, found NOT probably_primes: ")
+(prin "A minute run, found NOT probably primes: ")
 (flush)
 
 (setq Total 0  C 0)
@@ -35,8 +35,8 @@
          (mpz_set_str A (format N))
          (when (> 1 (mpz_probab_prime_p A 1))
             (inc 'C) ) ) ) )
-(prinl C " of total " Total)
-(prinl "Must be 0")
+(prinl C " of total " Total ".")
+(prinl "Must be 0.")
 
 (msg 'ok)
 (bye)
