@@ -13,6 +13,8 @@
 (mpz_init A)
 
 (prin "Found NOT probably_primes: ")
+(flush)
+
 (setq Total 0  C 0)
 # in place
 (in "prp.txt"
