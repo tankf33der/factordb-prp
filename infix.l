@@ -1,12 +1,20 @@
-(de fact (N)
+(de factorial (N)
    (if (=0 N)
       1
-      (* N (fact (dec N))) ) )
+      (* N (factorial (dec N))) ) )
 # Calculate value(s) based on stack top Operand
 # Modifies both V and O
-(de 1op (Op)
-   
-)
+(de 1op ()
+   (case (cdar O)
+      ("\^"
+         (let N (++ V)
+            (push 'V (** (++ V) N)) ) )
+      ("!"
+         (push 'V (factorial (++ V))) )
+      (T
+         (let N (++ V)
+            (push 'V ((intern @) (++ V) N)) ) ) )
+   (++ O) )
 (de consOp (Op)
    (case Op
       (("+" "-") (cons 1 Op))
@@ -15,26 +23,18 @@
 (de calculate (Lst)
    (let (O NIL  V NIL)
       (for I Lst
-         (println 'I I)
          (cond
             ((num? I) (push 'V I))
-            ((= "(" I) (push 'V T))
+            ((= "(" I) (push 'O (cons 0 T)))
             ((= ")" I)
-               (while (nT (car O)) (op1))
-               (++ V) )
+               (while (gt0 (caar O)) (1op))
+               (++ O) )
             (T
                (let CurrOp (consOp I)
-                  (println 'CurrOp CurrOp)
                   (while (and O (>= (caar O) (car CurrOp)))
-                     (op1) )
-                  (push 'V CurrOp) ) )
-         ) # cond
-      )
-      (println 'O O 'V V)
-   )
-)
-
-(calculate '(2 "+" 3))
-
-(msg 'ok)
-(bye)
+                     (1op) )
+                  (push 'O CurrOp) ) ) ) )
+      (while O (1op))
+      ~(assert (not O))
+      ~(assert (not (cadr V)))
+      (car V) ) )
